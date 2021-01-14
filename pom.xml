@@ -6,7 +6,18 @@
 
     <groupId>com.ecust.flink</groupId>
     <artifactId>Flink</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>flink-connectors</module>
+        <module>flink-core</module>
+        <module>flink-sql</module>
+        <module>flink-state</module>
+        <module>flink-window</module>
+        <module>flink-examples</module>
+        <module>flink-cep</module>
+        <module>flink-common</module>
+    </modules>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -37,6 +48,17 @@
         </dependency>
         <!--//-->
 
+        <!--java-bean自动创建工具-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+        </dependency>
+        <!--//-->
+
+
+
+
     </dependencies>
 
     <build>
@@ -62,7 +84,5 @@
             </plugin>
         </plugins>
     </build>
-
-
 
 </project>
