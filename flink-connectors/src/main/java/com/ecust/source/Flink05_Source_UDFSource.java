@@ -65,7 +65,7 @@ public class Flink05_Source_UDFSource {
                     map.get(s).setTemp(v);
 
                     //设定时间每次都要增大
-                    long ts = map.get(s).getTs() + random.nextInt(1000);
+                    long ts = map.get(s).getTs() + random.nextInt(2000);
                     SensorReading sensorReading = map.get(s);
                     sensorReading.setTs(ts);
 //                    System.out.println(i);
@@ -75,7 +75,7 @@ public class Flink05_Source_UDFSource {
                     sourceContext.collect(sensorReading);
 
                     //停顿一下
-                    Thread.sleep(10);
+                    Thread.sleep(100);
                 }
             }
         }

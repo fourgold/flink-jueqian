@@ -1,8 +1,7 @@
-package com.ecust.rich;
+package com.ecust.richapi;
 
 import com.ecust.beans.SensorReading;
 import com.ecust.utils.KafkaTool;
-import org.apache.flink.api.common.functions.MapFunction;
 import org.apache.flink.api.common.functions.RichMapFunction;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
