@@ -6,9 +6,6 @@ import org.apache.flink.api.common.state.ValueStateDescriptor;
 import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.configuration.Configuration;
 import org.apache.flink.contrib.streaming.state.RocksDBStateBackend;
-import org.apache.flink.runtime.state.filesystem.FsStateBackend;
-import org.apache.flink.runtime.state.memory.MemoryStateBackend;
-import org.apache.flink.streaming.api.CheckpointingMode;
 import org.apache.flink.streaming.api.datastream.DataStreamSource;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -42,7 +39,10 @@ public class Flink04_State_StateBackend {
 
         //设置RocksDB状态后端 = rocksDB
         //ocksDBStateBackend(String checkpointDataUri, boolean enableIncrementalCheckpointing)
+
         env.setStateBackend(new RocksDBStateBackend("hdfs://hadoop102:8020/flinkcheckpoints/rocks",true));
+
+        //todo 如果开启增量需要将enableCheckPointing关掉
         env.enableCheckpointing(5000L);
 
         //0x1 处理数据
@@ -73,6 +73,7 @@ public class Flink04_State_StateBackend {
                 }
             }
         });
+
         SingleOutputStreamOperator<String> result = lastName;
 
         //0x2 打印结果

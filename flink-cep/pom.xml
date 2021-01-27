@@ -11,5 +11,13 @@
 
     <artifactId>flink-cep</artifactId>
 
+    <dependencies>
+        <!--添加cep依赖-->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-cep_2.11</artifactId>
+            <version>1.10.0</version>
+        </dependency>
+    </dependencies>
 
 </project>

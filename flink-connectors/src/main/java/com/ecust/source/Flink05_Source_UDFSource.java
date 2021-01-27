@@ -53,7 +53,7 @@ public class Flink05_Source_UDFSource {
         @Override
         public void run(SourceContext<SensorReading> sourceContext) throws Exception {
             //0x0 造数据 给传感器赋值
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < 10; i++) {
                 SensorReading sensorReading = map.put("sensor_" + i, new SensorReading("sensor_" + (i+1), System.currentTimeMillis()-10000000L, 60D+random.nextGaussian() * 20));
             }
             while (running){
@@ -61,8 +61,9 @@ public class Flink05_Source_UDFSource {
                 for (String s : map.keySet()) {
                     //设定温度
                     double v = map.get(s).getTemp() + random.nextGaussian() * 4;
+                    double v1 = (double) Math.round(v * 100) / 100;
                     //每次温度都要增大
-                    map.get(s).setTemp(v);
+                    map.get(s).setTemp(v1);
 
                     //设定时间每次都要增大
                     long ts = map.get(s).getTs() + random.nextInt(2000);
@@ -75,7 +76,7 @@ public class Flink05_Source_UDFSource {
                     sourceContext.collect(sensorReading);
 
                     //停顿一下
-                    Thread.sleep(100);
+                    Thread.sleep(10);
                 }
             }
         }
